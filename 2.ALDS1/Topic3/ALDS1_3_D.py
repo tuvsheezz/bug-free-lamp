@@ -1,11 +1,15 @@
-n = int(input())
-a = list(map(int, input().split()))
-print(*a)
-for i in range(1, n):
-    key = a[i]
-    j = i - 1
-    while j >= 0 and a[j] > key:
-        a[j + 1] = a[j]
-        j -= 1
-    a[j + 1] = key
-    print(*a)
+s = input()
+a = []
+down = []
+for i, line in enumerate(s):
+    if line == "\\":
+        down.append(i)
+    elif line == "/" and down:
+        j = down.pop()
+        a_tmp = i-j
+        while a and a[-1][0] > j:
+            a_tmp += a.pop()[1]
+        a.append([j, a_tmp])
+
+print(sum([s for i, s in a]))
+print(len(a), *[s for i, s in a])
