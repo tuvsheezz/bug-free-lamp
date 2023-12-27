@@ -17,15 +17,14 @@ class BinaryIndexedTree:
 
 
 if __name__ == "__main__":
-    n = int(input())
-    a = list(map(int, input().split()))
-
-    dic = {b: i for i, b in enumerate(sorted(a), 1)}
-
+    n, q = map(int, input().split())
     bit = BinaryIndexedTree(n)
-    ans = 0
 
-    for i, a in enumerate(a):
-        ans += i - bit.sum(dic[a])
-        bit.add(dic[a], 1)
-    print(ans)
+    for _ in range(q):
+        com, x, y = map(int, input().split())
+        if com:
+            print(bit.sum(y) - bit.sum(x - 1))
+        else:
+            bit.add(x, y)
+
+# https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
