@@ -7,7 +7,7 @@ class SortAlgorithm:
         swap_count = 0
         for i in range(n):
             for j in range(n - 1, i, -1):
-                if a[j] < a[j - 1]:
+                if a[j][1] < a[j - 1][1]:
                     a[j - 1], a[j] = a[j], a[j - 1]
                     swap_count += 1
         return swap_count
@@ -18,28 +18,22 @@ class SortAlgorithm:
         for i in range(n):
             mini = i
             for j in range(i, n):
-                if a[j] < a[mini]:
+                if a[j][1] < a[mini][1]:
                     mini = j
             if i != mini:
                 swap_count += 1
             a[i], a[mini] = a[mini], a[i]
         return swap_count
 
-    def insertion_sort(self, a):
-        n = len(a)
-        print(*a)
-        for i in range(1, n):
-            key = a[i]
-            j = i - 1
-            while j >= 0 and a[j] > key:
-                a[j + 1] = a[j]
-                j -= 1
-            a[j + 1] = key
-            print(*a)
-
 
 if __name__ == "__main__":
     _ = int(input())
     sa = SortAlgorithm()
-    a = list(map(int, input().split()))
-    sa.insertion_sort(a)
+    a = list(input().split())
+    b = a.copy()
+    sa.bubble_sort(a)
+    print(*a)
+    print("Stable")
+    sa.selection_sort(b)
+    print(*b)
+    print("Stable" if a == b else "Not stable")

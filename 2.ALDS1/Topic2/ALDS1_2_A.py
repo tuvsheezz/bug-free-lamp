@@ -10,7 +10,7 @@ class SortAlgorithm:
                 if a[j] < a[j - 1]:
                     a[j - 1], a[j] = a[j], a[j - 1]
                     swap_count += 1
-        return swap_count
+        return a, swap_count
 
     def selection_sort(self, a):
         n = len(a)
@@ -23,23 +23,13 @@ class SortAlgorithm:
             if i != mini:
                 swap_count += 1
             a[i], a[mini] = a[mini], a[i]
-        return swap_count
-
-    def insertion_sort(self, a):
-        n = len(a)
-        print(*a)
-        for i in range(1, n):
-            key = a[i]
-            j = i - 1
-            while j >= 0 and a[j] > key:
-                a[j + 1] = a[j]
-                j -= 1
-            a[j + 1] = key
-            print(*a)
+        return a, swap_count
 
 
 if __name__ == "__main__":
     _ = int(input())
     sa = SortAlgorithm()
     a = list(map(int, input().split()))
-    sa.insertion_sort(a)
+    a, swap_count = sa.bubble_sort(a)
+    print(*a)
+    print(swap_count)
