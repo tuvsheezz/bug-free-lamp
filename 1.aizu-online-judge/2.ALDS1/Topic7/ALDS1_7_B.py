@@ -1,4 +1,4 @@
-from collections import deque
+import sys
 
 
 class BinaryTreeNode:
@@ -22,31 +22,33 @@ class BinaryTree:
     def add_edge(self, par, u, v):
         if not u == -1:
             self.edges[par].children.append(u)
-            self.edges[par].children.append(v)
-            self.edges[par].degree += 2
+            self.edges[par].degree += 1
             self.edges[par].type = "internal node"
             self.edges[u].parent = par
+        if not v == -1:
+            self.edges[par].children.append(v)
+            self.edges[par].degree += 1
+            self.edges[par].type = "internal node"
             self.edges[v].parent = par
+        if not u == -1 and not v == -1:
             self.edges[u].sibling = v
             self.edges[v].sibling = u
 
-    def set_depth(self, root):
-        queue = deque([root])
+    def calc(self, root, depth):
+        if depth == 0:
+            self.edges[root].type = "root"
+        self.edges[root].depth = depth
+        height = 0
+        for child in self.edges[root].children:
+            self.calc(child, depth + 1)
+            height = max(height, self.edges[child].height + 1)
 
-        self.edges[root].type = "root"
-
-        while queue:
-            current_node = queue.popleft()
-            for x in self.edges[current_node].children:
-                self.edges[x].depth = self.edges[current_node].depth + 1
-                self.height = max(self.height, self.edges[x].depth)
-                queue.append(x)
-
-        for i in range(self.vertices):
-            self.edges[i].height = self.height - self.edges[i].depth
+        self.edges[root].height = height
+        self.height = max(self.height, self.edges[root].depth)
 
 
 if __name__ == "__main__":
+    sys.setrecursionlimit(200100)
     n = int(input())
     bt = BinaryTree(n)
     has_parent = [False for _ in range(n)]
@@ -66,7 +68,7 @@ if __name__ == "__main__":
             root = i
             break
 
-    bt.set_depth(root)
+    bt.calc(root, 0)
 
     for i in range(n):
         li = [
