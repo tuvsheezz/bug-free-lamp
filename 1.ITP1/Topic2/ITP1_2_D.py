@@ -5,6 +5,6 @@ ymin = y - r
 ymax = y + r
 
 if 0 <= xmin and xmax <= w and 0 <= ymin and ymax <= h:
-    print('Yes')
+    print("Yes")
 else:
-    print('No')
+    print("No")

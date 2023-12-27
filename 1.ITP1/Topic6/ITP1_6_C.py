@@ -4,6 +4,6 @@ for _ in range(int(input())):
     rooms[b - 1][f - 1][r - 1] += t
 for i in range(4):
     if not i == 0:
-        print('#' * 20)
+        print("#" * 20)
     for j in range(3):
-        print('', *rooms[i][j])
+        print("", *rooms[i][j])

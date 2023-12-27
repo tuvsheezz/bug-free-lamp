@@ -1,6 +1,6 @@
 while True:
     s = input()
-    if s == '-':
+    if s == "-":
         break
     m = int(input())
     index = 0

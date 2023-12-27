@@ -1,2 +1,2 @@
 _ = input()
-print(' '.join(reversed(input().split())))
+print(" ".join(reversed(input().split())))
