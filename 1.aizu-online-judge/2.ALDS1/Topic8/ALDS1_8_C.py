@@ -14,8 +14,8 @@ class Node:
 class BST:
     def __init__(self):
         self.root = None
-        self.ino = list()
-        self.preo = list()
+        self.inorder_list = list()
+        self.preorder_list = list()
 
     def insert(self, z):
         x = self.root
@@ -80,10 +80,10 @@ class BST:
             else:
                 node.parent.left, node.right.parent = node.right, node.parent
         else:
-            self.ino = list()
+            self.inorder_list = list()
             self.inorder(self.root)
-            ind = self.ino.index(node.data)
-            new_data = self.ino[ind + 1]
+            ind = self.inorder_list.index(node.data)
+            new_data = self.inorder_list[ind + 1]
             self.delete(new_data)
             node.data = new_data
 
@@ -92,24 +92,24 @@ class BST:
             return
 
         self.inorder(root.left)
-        self.ino.append(root.data)
+        self.inorder_list.append(root.data)
         self.inorder(root.right)
 
     def preorder(self, root):
         if root is None:
             return
 
-        self.preo.append(root.data)
+        self.preorder_list.append(root.data)
         self.preorder(root.left)
         self.preorder(root.right)
 
     def print(self):
-        self.ino = list()
-        self.preo = list()
+        self.inorder_list = list()
+        self.preorder_list = list()
         self.inorder(self.root)
-        print(" " + " ".join(map(str, self.ino)))
+        print(" " + " ".join(map(str, self.inorder_list)))
         self.preorder(self.root)
-        print(" " + " ".join(map(str, self.preo)))
+        print(" " + " ".join(map(str, self.preorder_list)))
 
 
 if __name__ == "__main__":
