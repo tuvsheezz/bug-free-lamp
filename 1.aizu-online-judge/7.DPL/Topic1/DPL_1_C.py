@@ -12,4 +12,4 @@ def knapsack(a, w, is_zero_one=True):
 if __name__ == "__main__":
     n, w = map(int, input().split())
     a = [list(map(int, input().split())) for _ in range(n)]
-    print(knapsack(a, w))
+    print(knapsack(a, w, False))
