@@ -18,7 +18,8 @@ class Info:
 
 
 class Node:
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
         self.children = []
 
 
@@ -26,7 +27,7 @@ class Graph:
     def __init__(self, n, directed=False):
         self.V = n
         self.inf = float("inf")
-        self.edges = list([Node() for _ in range(n)])
+        self.edges = list([Node(i) for i in range(n)])
         self.is_directed = directed
 
     def add_edge(self, u, v, c):

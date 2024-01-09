@@ -1,5 +1,6 @@
 class Node:
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
         self.children = []
 
 
@@ -7,7 +8,7 @@ class Graph:
     def __init__(self, n, is_directed=False):
         self.vertices = n
         self.is_directed = is_directed
-        self.edges = [Node() for _ in range(n)]
+        self.edges = [Node(i) for i in range(n)]
         self.visited = [False for _ in range(n)]
         self.fi = [100000 for _ in range(n)]
         self.la = [0 for _ in range(n)]
