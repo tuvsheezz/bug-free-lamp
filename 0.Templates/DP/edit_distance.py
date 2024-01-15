@@ -1,7 +1,10 @@
-def edit_distance(s, t):
-    n1 = len(s)
-    n2 = len(t)
-    dp = [[float("inf")] * (n2 + 1) for _ in range(n1 + 1)]
+INF: int = 10**20
+
+
+def edit_distance(s: str, t: str) -> int:
+    n1: int = len(s)
+    n2: int = len(t)
+    dp: list[list[int]] = [[INF] * (n2 + 1) for _ in range(n1 + 1)]
 
     for i in range(n1 + 1):
         dp[i][0] = i

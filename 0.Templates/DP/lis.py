@@ -1,8 +1,8 @@
 import bisect
 
 
-def lengthOfLIS(nums):
-    dp = []
+def lengthOfLIS(nums: list[int]) -> int:
+    dp: list[int] = []
     for x in nums:
         if dp and dp[-1] >= x:
             ind = bisect.bisect_left(dp, x)
@@ -14,5 +14,5 @@ def lengthOfLIS(nums):
 
 if __name__ == "__main__":
     n = int(input())
-    nums = [int(input()) for _ in range(n)]
+    nums: list[int] = [int(input()) for _ in range(n)]
     print(lengthOfLIS(nums))
