@@ -1,6 +1,8 @@
-def knapsack(a, w, by_weight, is_zero_one=True):
+def knapsack(
+    a: list[list[int]], w: int, by_weight: bool, is_zero_one: bool = True
+) -> int:
     if by_weight:
-        dp = [-1] * (w + 1)
+        dp: list[int] = [-1] * (w + 1)
         dp[0] = 0
         for x in a:
             for i in range(w, -1, -1) if is_zero_one else range(w + 1):
@@ -10,7 +12,7 @@ def knapsack(a, w, by_weight, is_zero_one=True):
         return max(dp)
     else:
         sum_v = sum(x[0] for x in a)
-        dp = [float("inf")] * (sum_v + 1)
+        dp = [10**30] * (sum_v + 1)
         dp[0] = 0
         for x in a:
             for i in range(sum_v, -1, -1):
@@ -22,5 +24,5 @@ def knapsack(a, w, by_weight, is_zero_one=True):
 
 if __name__ == "__main__":
     n, w = map(int, input().split())
-    a = [list(map(int, input().split())) for _ in range(n)]
+    a: list[list[int]] = [list(map(int, input().split())) for _ in range(n)]
     print(knapsack(a, w, False, True))
