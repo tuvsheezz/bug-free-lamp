@@ -4,26 +4,26 @@ inf = float("inf")
 
 
 class Node:
-    def __init__(self, id):
-        self.id = id
-        self.children = []
+    def __init__(self, id: int):
+        self.id: int = id
+        self.children: list[int] = []
 
 
 class Graph:
-    def __init__(self, n, is_directed=False):
-        self.vertices = n
-        self.is_directed = is_directed
-        self.edges = [Node(i) for i in range(n)]
+    def __init__(self, n: int, is_directed: bool = False):
+        self.vertices: int = n
+        self.is_directed: bool = is_directed
+        self.edges: list[Node] = [Node(i) for i in range(n)]
 
-    def add_edge(self, u, v):
+    def add_edge(self, u: int, v: int) -> None:
         self.edges[u].children.append(v)
 
         if not self.is_directed:
             self.edges[v].children.append(u)
 
-    def bfs(self, root):
-        visited = [False for _ in range(self.vertices)]
-        dist = [inf for _ in range(self.vertices)]
+    def bfs(self, root: int) -> list[int]:
+        visited: list[bool] = [False for _ in range(self.vertices)]
+        dist: list[int] = [int(inf) for _ in range(self.vertices)]
 
         dist[root] = 0
         queue = deque([root])
